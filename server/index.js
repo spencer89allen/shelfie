@@ -11,7 +11,6 @@ var app = express();
 
 massive( process.env.CONNECTION_STRING, { scripts: __dirname + '/db' } ).then( dbInstance => {
     app.set('db', dbInstance)
-    // ^ still need to create our table
     console.log(`The database is connected`)
     // return dbInstance.setup.create_products_table()
 }).catch(e => {
@@ -23,6 +22,7 @@ app.use(bodyParser.json());
 //Endpoints 
 app.get('/api/inventory', cntrl.getInventory)
 app.post('/api/product', cntrl.createProduct)
+app.delete('/api/delete/:id',cntrl.deleteProduct)
 
 var Port = process.env.PORT || 4545;
 

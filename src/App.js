@@ -38,7 +38,9 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>
-        <Dashboard list={this.state.inventory}/>
+        <Dashboard  list={this.state.inventory}
+                    get={this.getInventory}
+        />
         <Form addInventoryItem={this.addInventoryItem} />
       </div>
     );

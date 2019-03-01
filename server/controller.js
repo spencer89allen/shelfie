@@ -23,5 +23,17 @@ module.exports = {
         })
     },
 
+    deleteProduct: (req, res) => {
+        var { id } = req.params
+        const dbInstance = req.app.get('db')
+
+        dbInstance.delete_product([id]).then(() => {
+            res.sendStatus(200)
+        }).catch((err) => {
+            res.status(409).send({errMessage: "For some reason product was not deleted."});
+            console.log(err)
+        })
+    },
+
 
 }
