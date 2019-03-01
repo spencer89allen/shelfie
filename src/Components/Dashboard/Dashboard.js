@@ -10,11 +10,11 @@ class Dashboard extends Component {
         const display = this.props.list.map((element, id) => {
             return (
                 <div key={id}>
-                    <p></p>
+                    <br/>
                     {element.name}
-                    <p></p>
+                    <br/>
                     {element.image}
-                    <p></p>
+                    <br/>
                     {element.price}
                 </div>
             )

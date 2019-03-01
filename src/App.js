@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import './App.css';
 
 //Components
@@ -15,20 +15,31 @@ class App extends Component {
   }
 
   componentWillMount() {
-    Axios.get('/api/inventory').then((res) => {
-      this.setState({
-        inventory: res.data,
-      })
-      console.log(res)
-    })
+    this.getInventory();
   }
+
+
+  getInventory = () => {
+    axios.get('/api/inventory').then((response) => {
+      this.setState({
+        inventory: response.data,
+      })
+    })
+  };
+
+  addInventoryItem = (newProduct) => {
+    axios.post('/api/product', newProduct).then((response) => {
+      console.log(response)
+      this.getInventory();
+    })
+  };
   
   render() {
     return (
       <div className="App">
         <Header/>
         <Dashboard list={this.state.inventory}/>
-        <Form/>
+        <Form addInventoryItem={this.addInventoryItem} />
       </div>
     );
   }

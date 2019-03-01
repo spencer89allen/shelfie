@@ -7,7 +7,6 @@ class Form extends Component {
         image: '',
         name: '',
         price: '',
-        product: [],
     };
 
     handleInput(name, value) {
@@ -18,10 +17,10 @@ class Form extends Component {
 
     handleAddNewProduct () {
         const { image, name, price } = this.state;
-        var newProduct = this.state.product
-        newProduct.push({ image, name, price });
+        var newProduct = { image, name, price };
+        this.props.addInventoryItem(newProduct);
+
         this.setState({
-            product: newProduct,
             image: '',
             name: '',
             price: '',

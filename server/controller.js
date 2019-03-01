@@ -12,19 +12,15 @@ module.exports = {
     },
 
     createProduct: (req, res) => {
-        const dbInstance = req.app.get('db')
         let { name, price, image } = req.body
-        if(name == null || price == null || image == null) {
-            res.sendStatus(400)
-        }
-        else {
-            dbInstance.create_product([name, price, image]).then(() => {
-                res.status(200)
-            }).catch((err) => {
-                res.status(500).send({errMessage: "Something went wrong adding a new product."});
-                console.log(err)
-            });
-        }
+        const dbInstance = req.app.get('db')
+
+        dbInstance.create_product([name, price, image]).then((dbResponse) => {
+            res.status(200).send('created')
+        }).catch((err) => {
+            console.log(err)
+            res.status(500).send('Could not create the product');
+        })
     },
 
 
