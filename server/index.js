@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 
 //Endpoints 
 app.get('/api/inventory', cntrl.getInventory)
+app.post('/api/product', cntrl.createProduct)
 
 var Port = process.env.PORT || 4545;
 
