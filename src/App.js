@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 import './App.css';
 
 //Components
@@ -9,20 +10,18 @@ import Form from './Components/Form/Form';
 class App extends Component {
  
   state = {
-    inventory: [ 
-      {
-        image:'https://http.cat/100',
-        name: 'Cat 1',
-        price: 15,
-      }, 
-      {
-        image:'https://http.cat/404',
-        name: 'Cat 2',
-        price: 20
-      } 
-    ],
+    inventory: [],
+
   }
 
+  componentWillMount() {
+    Axios.get('/api/inventory').then((res) => {
+      this.setState({
+        inventory: res.data,
+      })
+      console.log(res)
+    })
+  }
   
   render() {
     return (
