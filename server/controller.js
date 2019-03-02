@@ -28,12 +28,32 @@ module.exports = {
         const dbInstance = req.app.get('db')
 
         dbInstance.delete_product([id]).then(() => {
-            res.sendStatus(200)
+            return dbInstance.products.find();
+        }).then(products => {
+            res.send(products)
         }).catch((err) => {
             res.status(409).send({errMessage: "For some reason product was not deleted."});
             console.log(err)
         })
     },
 
+    editProduct: (req, res) => {
+        const { id } = req.params;
+        // const { } = req.bo
+        const dbInstance = req.app.get('db')
+
+        dbInstance.edit_product({ id, ...req.body }).then(() => {
+            res.sendStatus(200)
+        })
+    },
+
+    getProduct: (req, res) => {
+        var { id } = req.params
+        const dbInstance = req.app.get('db')
+
+        dbInstance.products.find(id).then((product) => {
+            res.send(product)
+        })
+    },
 
 }

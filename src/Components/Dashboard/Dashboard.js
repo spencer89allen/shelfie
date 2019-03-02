@@ -6,32 +6,38 @@ import Product from '../Product/Product';
 
 class Dashboard extends Component {
 
-    handleDelete (id) {
-        axios.delete(`/api/delete/${id}`).then((res) =>{
-            this.props.get()
-        });
+    state = {
+        inventory: [],
+
     }
-    
-    render() {
-        const display = this.props.list.map((element, id) => {
-            return (
-                <div key={id}>
-                    <br/>
-                    {element.name}
-                    <br/>
-                    {element.image}
-                    <br/>
-                    {element.price}
-                    <br/>
-                    <button onClick={(e) => this.handleDelete(element.id)}>Remove</button>
-                </div>
-            )
+
+    componentDidMount() {
+        this.getInventory();
+    }
+
+    getInventory = () => {
+        axios.get('/api/inventory').then((response) => {
+            this.setState({
+                inventory: response.data,
+            })
         })
+    };
+
+    handleDelete = (id) => {
+        axios.delete(`/api/delete/${id}`).then((response) => {
+            this.setState({
+                inventory: response.data
+            })
+        });
+    };
+
+
+    render() {
+
         return (
             <div>
-                <p>Dashboard</p>
-                {display}
-                <Product/>
+                <h1>Dashboard</h1>
+                <Product delete={this.handleDelete} product={this.state.inventory}/>
             </div>
         )
     }

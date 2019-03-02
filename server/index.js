@@ -22,7 +22,9 @@ app.use(bodyParser.json());
 //Endpoints 
 app.get('/api/inventory', cntrl.getInventory)
 app.post('/api/product', cntrl.createProduct)
-app.delete('/api/delete/:id',cntrl.deleteProduct)
+app.delete('/api/delete/:id', cntrl.deleteProduct)
+app.put('/api/product/:id', cntrl.editProduct)
+app.get('/api/product/:id', cntrl.getProduct)
 
 var Port = process.env.PORT || 4545;
 
