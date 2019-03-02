@@ -96,10 +96,12 @@ class Form extends Component {
                         name="price"
                     />
                 </p>
-                <button onClick={() => this.handleAddNewProduct()}>
-                    {this.state.isEdit ? 'Save Changes' : 'Add to Inventory'}
-                </button>
-                <button onClick={() => this.handleCancel()}>Cancel</button>
+                <div >
+                    <button onClick={() => this.handleAddNewProduct()} className="button is-rounded is-success">
+                        {this.state.isEdit ? 'Save Changes' : 'Add to Inventory'}
+                    </button>
+                    <button onClick={() => this.handleCancel()} className="button is-rounded is-warning">Cancel</button>
+                </div>
             </div>
         )
     }

@@ -5,12 +5,16 @@ export default function Header() {
 
     return (
 
-        <div>
-            <h1>Shelfie Header</h1>
-            <Link to='/'>Dashboard</Link>
-            <p></p>
-            <Link to="/add">Add Product</Link>
-        </div>
+        <section className="hero is-info is-medium is-primary is-bold">
+            <div className="hero-body">
+                <h1 className="title">Shelfie</h1>
+                 <div>
+                    <Link to='/' className="subtitle">Dashboard</Link>
+                    <p></p>
+                    <Link to="/add" className="subtitle">Add Product</Link>
+                 </div>
+            </div>
+        </section>
     )
 
 }

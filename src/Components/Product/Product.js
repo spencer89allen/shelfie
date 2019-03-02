@@ -5,16 +5,24 @@ export default function Product(props) {
 
     const display = props.product.map((element, id) => {
         return (
-            <div key={id}>
+            <div key={id} className="box">
                 <br />
                 {element.name}
                 <br />
                 <img src={element.image} alt='no dice'></img>
                 <br />
-                {element.price}
+                ${element.price}
                 <br />
-                <button onClick={(e) => props.delete(element.id)}>Remove</button>
-                <Link to={`/edit/${element.id}`}><button>Edit</button></Link>
+                <div className="columns">
+                    <div className="column">
+                        <button onClick={(e) => props.delete(element.id)} className="button is-danger">Remove</button>
+                    </div>
+                    <div className="column">
+                        <Link to={`/edit/${element.id}`}>
+                            <button className="button is-warning">Edit</button>
+                        </Link>
+                    </div>
+                </div>
             </div>
         )
     })
@@ -22,7 +30,6 @@ export default function Product(props) {
     return (
 
         <div>
-            <h1>Product</h1>
             { display }
         </div>
     )
